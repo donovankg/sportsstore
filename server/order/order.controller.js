@@ -7,6 +7,12 @@ var interface = {
             .then(function(savedOrder){
                 res.send(savedOrder);
             })
+    },
+    getOrders: function(req,res,next){
+        Order.find({})
+            .then(function(orders){
+                res.send(orders);
+            })
     }
 };
 
