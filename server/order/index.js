@@ -4,6 +4,6 @@ var controller = require("./order.controller.js");
 //Restart Database
 
 
-router.post("/",controller.getList);
+router.post("/",controller.setOrder);
 
 module.exports = router;

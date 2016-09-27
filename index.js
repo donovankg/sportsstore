@@ -2,6 +2,8 @@ var express = require("express");
 var mongoose = require("mongoose");
 var product = require("./server/product");
 var order = require("./server/order");
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
 
 var app = express();
 //Connect to MongoDB
@@ -15,6 +17,9 @@ db.once("open", function(){
 });
 //Middleware
 app.use(express.static('client'));
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({'extended': 'true'}));
+app.use(bodyParser.json());
 //Routers
 app.use("/products", product);
 app.use("/orders", order);
