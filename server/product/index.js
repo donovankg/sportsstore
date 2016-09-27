@@ -4,6 +4,9 @@
 var express = require("express");
 var router = express.Router();
 var controller = require("./product.controller.js");
+//Restart Database
+require("./seed");
+
 
 router.get("/",controller.getList);
 

@@ -3,24 +3,6 @@
  */
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var initial = require("./initialData");
-
-function initialize(initial){
-// Add the data in initial data to the Product collection.
-    Product.count(function(e,c){
-        console.log("count: ", c);
-        for(var i=c; i < initial.length; i++){
-            var product = new Product(initial[i]);
-            product.save((function(){
-                var c = i;
-                return function(err){
-                if(!err)
-                    console.log(c,"saved")
-                }
-            })());
-        }
-    });
-}
 
 var productSchema = new Schema({
     name: {
@@ -40,9 +22,9 @@ var productSchema = new Schema({
         type: Number,
         required: true
     }
+
 });
 
 var Product = mongoose.model("Product", productSchema);
-initialize(initial);
 
-module.exports = Product
+module.exports = Product;
