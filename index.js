@@ -1,18 +1,9 @@
 var express = require("express");
 var mongoose = require("mongoose");
-//var model = require("./product/product.model.js") //You don't need the model here
-var products = require("./server/product");
+var product = require("./server/product");
+var order = require("./server/order");
 
 var app = express();
-
-// var obj = {
-//     test: "ok"
-// };
-//
-// app.get('/', function(req, res){
-//     res.type("json");
-//     res.json(obj);
-// });
 //Connect to MongoDB
 mongoose.connect("localhost", "SportsStore")
 var db = mongoose.connection;
@@ -25,7 +16,8 @@ db.once("open", function(){
 //Middleware
 app.use(express.static('client'));
 //Routers
-app.use("/products", products);
+app.use("/products", product);
+app.use("/orders", order);
 //Default Router
 app.get('/',function(req,res,next){
     res.sendFile(__dirname+"/client"+"/index.html");
