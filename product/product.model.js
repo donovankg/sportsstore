@@ -8,12 +8,12 @@ var initial = require("./initialData");
 function initialize(initial){
 // Add the data in initial data to the Product collection.
     Product.count(function(e,c){
-        console.log("count: ", c)
+        console.log("count: ", c);
         for(var i=c; i < initial.length; i++){
             var product = new Product(initial[i]);
-            product.save((function(err, data){
+            product.save((function(){
                 var c = i;
-                return function(err,data){
+                return function(err){
                 if(!err)
                     console.log(c,"saved")
                 }
