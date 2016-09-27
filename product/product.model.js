@@ -4,7 +4,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var initial = require("./initialData");
-console.log()
 
 function initialize(initial){
 // Add the data in initial data to the Product collection.
