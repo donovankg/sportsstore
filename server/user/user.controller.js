@@ -11,6 +11,10 @@ var interface = {
                 }
                     return res.status(401).send("Invalid User")
             })
+            .catch(function(err){
+                console.log(err);
+                res.status(400).send(err);
+            });
     }
 };
 

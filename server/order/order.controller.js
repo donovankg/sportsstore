@@ -7,12 +7,21 @@ var interface = {
             .then(function(savedOrder){
                 res.send(savedOrder);
             })
+            .catch(function(err){
+                console.log(err);
+                res.status(400).send(err);
+            });
     },
     getOrders: function(req,res,next){
         Order.find({})
             .then(function(orders){
                 res.send(orders);
             })
+            .catch(function(err){
+                console.log(err);
+                res.status(400).send(err);
+
+            });
     }
 };
 

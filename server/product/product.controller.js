@@ -6,6 +6,10 @@ var interface = {
             .then(function(products){
                 res.send(products)
             })
+            .catch(function(err){
+                console.log(err);
+                res.status(400).send(err);
+            });
     }
 };
 

@@ -59,6 +59,6 @@ Product.find({}).remove()
                 "price":1200
             })
             .then(function() {
-                console.log('finished populating users');
+                console.log('finished populating products');
             });
     });
