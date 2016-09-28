@@ -1,4 +1,5 @@
 var Product = require("./product.model.js");
+var mongoose = require("mongoose");
 
 var interface = {
     getList: function(req,res,next){
@@ -13,8 +14,13 @@ var interface = {
     },
     save: function(req,res,next){
         var id = req.params.id;
-        Product.update({_id:id},req.body)
+        if(!id) {
+            id=new mongoose.mongo.ObjectID()
+        }
+        console.log(id);
+        Product.findOneAndUpdate({_id:id},req.body,{upsert:true,new:true})
             .then(function(products){
+                console.log(products)
                 res.send(products)
             })
             .catch(function(err){
