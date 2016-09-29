@@ -1,38 +1,30 @@
 angular.module("sportsStore")
     .constant("dataUrl", "http://localhost:3000/products")
-    .controller("sportsStoreCtrl", function($http, dataUrl) {
+    .constant("orderUrl","http://localhost:3000/orders")
+    .controller("sportsStoreCtrl", function($http, $location, dataUrl,orderUrl, cart) {
         this.data = {};
         var self = this;
 
         $http.get(dataUrl)
-            .then(function(response) {
-                self.data.products = response.data;
+            .then(function(res) {
+                self.data.products = res.data;
             })
             .catch(function(error) {
                 self.error = error;
             })
-            // this.data = {
-            //     products: [{
-            //         name: "product #1",
-            //         description: "A product",
-            //         category: "category #1",
-            //         price: 100
-            //     }, {
-            //         name: "product #2",
-            //         description: "A product",
-            //         category: "category #1",
-            //         price: 110
-            //     }, {
-            //         name: "product #3",
-            //         description: "A product",
-            //         category: "category #2",
-            //         price: 210
-            //     }, {
-            //         name: "product #4",
-            //         description: "A product",
-            //         category: "category #3",
-            //         price: 202
-            //     },
-            //   ]
-            // }
+      this.sendOrder = function(shippingDetails) {
+        var order = angular.copy(shippingDetails);
+        order.products = cart.getProducts();
+        $http.post(orderUrl,order)
+        .then(function(res) {
+          self.data.orderId = res.data._id;
+          cart.getProducts().length = 0;
+        })
+        .catch(function(error){
+          self.data.orderError = error;
+        }).finally(function(){
+          $location.path("/complete");
+        })
+
+      }
     });
