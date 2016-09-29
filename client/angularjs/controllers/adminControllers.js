@@ -7,27 +7,24 @@ angular.module("sportsStoreAdmin")
             $http.post(authUrl, {
                 username: user,
                 password: pass
-            }, {
-                withCredentials: true
-            }).success(function(data) {
+            }).then(function(data) {
                 $location.path("/main");
 
-            }).error(function(error) {
-                this.authenticateError = error;
+            }).catch(function(error) {
+                self.authenticateError = error;
             });
         }
     })
-
 .controller("mainCtrl", function() {
-    self.screens = ["Products", "Orders"];
-    self.current = self.screens[0];
+    this.screens = ["Products", "Orders"];
+    this.current = this.screens[0];
 
-    self.setScreen = function(index){
-      self.current = self.screens[index];
+    this.setScreen = function(index){
+      this.current = this.screens[index];
     };
-self.getScreen = function() {
-return self.current == "Products" ?
-    "/angularjs/views/adminProducts.html" :
-    "/angularjs/views/adminOrders.html";
+this.getScreen = function() {
+return this.current == "Products" ?
+    "angularjs/views/adminProducts.html" :
+    "angularjs/views/adminOrders.html";
   };
 });
