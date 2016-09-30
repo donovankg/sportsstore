@@ -23,7 +23,7 @@ angular.module("sportsStoreAdmin")
             });
         }
         this.updateProduct = function(product) {
-            product.$save();
+            product.$save(); //this is throwing an error
             this.editedProduct = null;
         }
         this.startEdit = function(product) {

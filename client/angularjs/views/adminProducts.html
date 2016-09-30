@@ -9,7 +9,7 @@
         <tr>
             <th>Name</th><th>Description</th><th>Category</th><th>Price</th><th></th>
         </tr>
-        <tr ng-repeat="item in vm.products" ng-hide="item._id == editedProduct.id">
+        <tr ng-repeat="item in vm.products" ng-hide="item._id == editedProduct._id">
             <td>{{item.name}}</td>
             <td class="description">{{item.description}}</td>
             <td>{{item.category}}</td>
@@ -29,12 +29,12 @@
             <td><input ng-model="vm.editedProduct.price" required /></td>
             <td>
                 <button ng-hide="vm.editedProduct._id"
-                        ng-click="vm.createProduct(editedProduct)"
+                        ng-click="vm.createProduct(vm.editedProduct)"
                         class="btn btn-xs btn-primary">
                     Create
                 </button>
                 <button ng-show="vm.editedProduct._id"
-                        ng-click="vm.updateProduct(editedProduct)"
+                        ng-click="vm.updateProduct(vm.editedProduct)"
                         class="btn btn-xs btn-primary">
                     Save
                 </button>
