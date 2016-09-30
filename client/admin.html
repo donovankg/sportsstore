@@ -5,10 +5,11 @@
     <title>Administration</title>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
     <script>
-        angular.module("sportsStoreAdmin", ["ngRoute"])
+        angular.module("sportsStoreAdmin", ["ngRoute","ngResource"])
         .config(function($routeProvider) {
 
           $routeProvider.when("/login",{
@@ -22,13 +23,14 @@
             controller: "mainCtrl",
             controllerAs: "vm"
           });
-
           $routeProvider.otherwise({
             redirectTo: "/login"
-          })
+          });
+
         });
     </script>
     <script src="angularjs/controllers/adminControllers.js"></script>
+    <script src="angularjs/controllers/adminProductController.js"></script>
   </head>
   <body>
     <ng-view />
